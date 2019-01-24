@@ -91,6 +91,10 @@ public class DirPermissionDenied {
 
     @AfterTest
     public void tearDown() throws IOException {
+        ProcessTools.executeCommand("chmod", "777", TEST_DIR.toString())
+                    .outputTo(System.out)
+                    .errorTo(System.out)
+                    .shouldHaveExitValue(0);
         FileUtils.deleteFileIfExistsWithRetry(TEST_DIR);
     }
 }
